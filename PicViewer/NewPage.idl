@@ -1,0 +1,9 @@
+namespace PicViewer
+{
+    [default_interface]
+    runtimeclass NewPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        NewPage();
+        void SetImageSource(Microsoft.UI.Xaml.Media.Imaging.BitmapImage source);
+    }
+}

@@ -1,0 +1,14 @@
+import "thumbViewModel.idl";
+
+namespace PicViewer
+{
+    [default_interface]
+    runtimeclass MainWindow : Microsoft.UI.Xaml.Window
+    {
+        MainWindow();
+        Windows.Foundation.Collections.IObservableVector<IInspectable> viewModelVec{ get; };
+        Windows.Foundation.IAsyncAction NextItem();
+        Windows.Foundation.IAsyncAction PrevItem();
+        Windows.Foundation.IAsyncAction DeleteItem();
+    }
+}
