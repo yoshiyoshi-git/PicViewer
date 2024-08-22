@@ -6,5 +6,4 @@
 
 namespace winrt::PicViewer::implementation
 {
-
 }

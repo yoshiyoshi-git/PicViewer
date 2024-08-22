@@ -49,3 +49,4 @@ namespace winrt::PicViewer::factory_implementation
     {
     };
 }
+

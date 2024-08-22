@@ -1,6 +1,11 @@
 #pragma once
 
+#include "thumbViewModel.h"
+#include <winrt/Windows.Foundation.Collections.h>
+#include <winrt/Windows.UI.Xaml.Interop.h>
+
 #include "MainWindow.g.h"
+
 
 namespace winrt::PicViewer::implementation
 {
@@ -26,7 +31,6 @@ namespace winrt::PicViewer::implementation
                         _newPage = nullptr;
                     }
                 });
-
 
         }
 
@@ -65,7 +69,8 @@ namespace winrt::PicViewer::implementation
        
         //Exitがクリックされたよ！-ここは非同期へ変更
         winrt::Windows::Foundation::IAsyncAction Exit_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-    
+        
+   
     private:
         //自分自身へのハンドル
         static PicViewer::MainWindow MainWindow::mainCurrent;
@@ -73,8 +78,10 @@ namespace winrt::PicViewer::implementation
         //thumbViewModelを保存するメンバ
         Windows::Foundation::Collections::IObservableVector<Windows::Foundation::IInspectable> _thumbViewModelVec{ nullptr };
 
+
         //NewPage操作用メンバ
         winrt::Microsoft::UI::Xaml::Window _newPage{ nullptr };
+
 
     public:
         //GridViewのアイテムがクリックされた
@@ -82,6 +89,7 @@ namespace winrt::PicViewer::implementation
         
         //キーボードが押された
         winrt::Windows::Foundation::IAsyncAction thumbGrid_KeyDown(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
+        void Clear_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
     };
 }
 

@@ -2,7 +2,7 @@ namespace PicViewer
 {
     [bindable]
     [default_interface]
-    runtimeclass thumbViewModel 
+    runtimeclass thumbViewModel
     {
         thumbViewModel();
         thumbViewModel(Windows.Storage.StorageFile imagefile, Microsoft.UI.Xaml.Media.Imaging.BitmapImage thunbimage, String imagename);

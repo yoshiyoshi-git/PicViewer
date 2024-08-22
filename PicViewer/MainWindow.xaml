@@ -23,6 +23,9 @@
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
 
+                <MenuFlyoutItem Text="Clear" Click="Clear_Click">
+                </MenuFlyoutItem>
+
                 <MenuFlyoutItem Text="Exit" Click="Exit_Click">
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="E"/>
@@ -32,13 +35,13 @@
             </MenuBarItem>
         </MenuBar>
 
-        <GridView ItemsSource="{x:Bind viewModelVec}" Name="thumbGrid"  Grid.Row="1" IsItemClickEnabled="True" ItemClick="thumbGrid_ItemClick" KeyDown="thumbGrid_KeyDown">
+        <GridView  Name="thumbGrid"  Grid.Row="1" IsItemClickEnabled="True" ItemClick="thumbGrid_ItemClick" KeyDown="thumbGrid_KeyDown">
             <GridView.ItemTemplate>
                 <DataTemplate x:Name="ImageTextDataTemplate" x:DataType="local:thumbViewModel">
                     <StackPanel Height="170" Width="200" Margin="5">
                         <Image Source="{x:Bind GetThumbImage}" Height="130" Width="190" />
                         <StackPanel Margin="0,10">
-                            <TextBlock Text="{x:Bind GetImageName}"/>
+                            <TextBlock Text="{x:Bind GetImageName}" />
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>

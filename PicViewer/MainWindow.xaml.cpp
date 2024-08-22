@@ -132,6 +132,9 @@ winrt::Windows::Foundation::IAsyncAction winrt::PicViewer::implementation::MainW
 
 	//_thumbViewModelVecからも削除
 	_thumbViewModelVec.RemoveAt(_thumbViewModelVec_index);
+
+	//GridViewからも削除
+	thumbGrid().Items().RemoveAt(_thumbViewModelVec_index);
 }
 
 HWND winrt::PicViewer::implementation::MainWindow::getHwnd()
@@ -160,7 +163,10 @@ winrt::Windows::Foundation::IAsyncAction winrt::PicViewer::implementation::MainW
 		co_return;
 
 	//ここから選択されたフォルダの画像ファイルを変換・保存
+
+	//現在の_thumbViewModelVecとGridViewのItemsをクリア
 	_thumbViewModelVec.Clear();
+	thumbGrid().Items().Clear();
 
 	//jpgとpngとbmpとgif画像を探す。さがすフォルダはそのフォルダのみ
 	Windows::Storage::Search::QueryOptions serchoptions{};
@@ -174,7 +180,7 @@ winrt::Windows::Foundation::IAsyncAction winrt::PicViewer::implementation::MainW
 	auto serchresult = serchfolder.as<Windows::Storage::Search::IStorageFolderQueryOperations>().CreateFileQueryWithOptions(serchoptions);
 	auto&& allimage = co_await serchresult.GetFilesAsync();
 
-	//allimageをすべて走査して3つすべて取得できれば、_thumbViewModelVecへ保存
+	//allimageをすべて走査してサムネイルが取得できれば、_thumbViewModelVecへ保存
 	for (auto&& imagefile : allimage)
 	{
 		auto&& thumbnail{ co_await imagefile.GetThumbnailAsync(Windows::Storage::FileProperties::ThumbnailMode::PicturesView, 190, Windows::Storage::FileProperties::ThumbnailOptions::ResizeThumbnail) };
@@ -187,6 +193,9 @@ winrt::Windows::Foundation::IAsyncAction winrt::PicViewer::implementation::MainW
 
 		auto&& thumbViewModel = make<PicViewer::implementation::thumbViewModel>(imagefile, thumbImage, imagefile.Name());
 		_thumbViewModelVec.Append(thumbViewModel);
+
+		//例外がでるのでGridViewへ直接追加
+		thumbGrid().Items().Append(thumbViewModel);
 	}
 }
 
@@ -273,4 +282,13 @@ winrt::Windows::Foundation::IAsyncAction winrt::PicViewer::implementation::MainW
 		co_await DeleteIndexPicture(selectindex);
 		_thumbViewModelVec.RemoveAt(selectindex);
 	}
+}
+
+
+void winrt::PicViewer::implementation::MainWindow::Clear_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+	//_thumbViewModelVecをクリア
+	_thumbViewModelVec.Clear();
+	//GridViewのItemsをクリア
+	thumbGrid().Items().Clear();
 }
