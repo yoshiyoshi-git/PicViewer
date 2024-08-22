@@ -35,7 +35,7 @@
             </MenuBarItem>
         </MenuBar>
 
-        <GridView  Name="thumbGrid"  Grid.Row="1" IsItemClickEnabled="True" ItemClick="thumbGrid_ItemClick" KeyDown="thumbGrid_KeyDown">
+        <GridView  x:Name="thumbGrid"  Grid.Row="1" IsItemClickEnabled="True" ItemClick="thumbGrid_ItemClick" KeyDown="thumbGrid_KeyDown">
             <GridView.ItemTemplate>
                 <DataTemplate x:Name="ImageTextDataTemplate" x:DataType="local:thumbViewModel">
                     <StackPanel Height="170" Width="200" Margin="5">

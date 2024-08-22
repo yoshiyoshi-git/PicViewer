@@ -1,8 +1,6 @@
 #pragma once
 
 #include "thumbViewModel.h"
-#include <winrt/Windows.Foundation.Collections.h>
-#include <winrt/Windows.UI.Xaml.Interop.h>
 
 #include "MainWindow.g.h"
 
@@ -77,7 +75,6 @@ namespace winrt::PicViewer::implementation
 
         //thumbViewModel‚ğ•Û‘¶‚·‚éƒƒ“ƒo
         Windows::Foundation::Collections::IObservableVector<Windows::Foundation::IInspectable> _thumbViewModelVec{ nullptr };
-
 
         //NewPage‘€ì—pƒƒ“ƒo
         winrt::Microsoft::UI::Xaml::Window _newPage{ nullptr };
